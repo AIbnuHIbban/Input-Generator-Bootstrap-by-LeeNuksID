@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Input Generator Bootstrap</title>
-    <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -65,7 +64,7 @@
     <div class="container pt-3">
       <ul class="nav nav-pills nav-justified">
         <li class="nav-item">
-          <a class="nav-link active" href="index.html">Input Text</a>
+          <a class="nav-link" href="index.html">Input Text</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="index2.html">Input Number</a>
@@ -74,22 +73,22 @@
           <a class="nav-link" href="index3.html">Input Date</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-muted" href="javascript:void(0)">Select (Cooming Soon)</a>
+          <a class="nav-link active" href="index4.html">Select</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="index5.html">Textarea</a>
         </li>
       </ul>
       <br><br>
-      <h2 class="text-center">Input Text</h2>
+      <h2 class="text-center">Select</h2>
       <br>
       <div class="row">
         <div class="col-md-4">
           <div class="form-group">
-            <label for="">List Input</label>
+            <label for="">List Select</label>
             <textarea
               id="list"
-              placeholder="example: name,phone number"
+              placeholder="example: Country:Indonesian,Malaysia,Arab"
               class="form-control"
               name=""
               id=""
@@ -107,7 +106,7 @@
             id=""
             class="btn btn-outline-primary btn-block"
           >
-            Generate Input
+            Generate Select
           </button>
         </div>
         <div class="col-md-5">
@@ -144,21 +143,29 @@
         var list = $("#list");
         var listVal = $("#list").val();
         var content = $(".content");
-        var arrVal = listVal.split(",");
-        var arrValLenght = listVal.split(",").length;
+        var arrVal = listVal.split("||");
+        var arrValLenght = listVal.split("||").length;
         var code = $("code");
         var clipboard = $("#clipboard");
+        var option, type;
         content.html("");
         code.html("");
         for (let i = 0; i < arrValLenght; i++) {
-          // const element = array[i];
+          if (type = i/2) {
+            option = `<option>Isi</option>`;
+          }else{
+            option = ``;
+          }
+
           content.append(`<div class="form-group">
     <label class="text-capitalize" for="">${arrVal[i]}</label>
-    <input type="text" class="text-capitalize form-control" name="${arrVal[
+    <select class="form-control" name="${arrVal[
       i
-    ].replace(" ", "_")}" id="${arrVal[i].replace(" ", "_")}" placeholder="${
-            arrVal[i]
-          }">
+    ].replace(" ", "_")}" id="${arrVal[
+      i
+    ].replace(" ", "_")}">
+        ${option}
+    </select>
 </div>
 `);
         }
